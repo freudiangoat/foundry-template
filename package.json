@@ -6,7 +6,7 @@
   "scripts": {
     "build": "gulp build"
   },
-  "author": "",
+  "author": "FreudianGoat",
   "license": "MIT",
   "devDependencies": {
     "gulp": "^4.0.2",
