@@ -4,13 +4,19 @@ const project = ts.createProject('tsconfig.json')
 
 
 gulp.task('compile', () => {
-  return gulp.src('src/**/*.ts', {base: 'src/'})
-    .pipe(project())
-    .pipe(gulp.dest('dist/'))
+  return new Promise<void>((resolve, _) => {
+    gulp.src('src/**/*.ts', { base: 'src/' })
+      .pipe(project())
+      .pipe(gulp.dest('dist/'));
+    gulp.src('src/**/*.js', { base: 'src/' })
+      .pipe(project())
+      .pipe(gulp.dest('dist/'));
+    resolve();
+  });
 })
 
 gulp.task('copy', async () => {
-  return new Promise<void>((resolve,reject) => {
+  return new Promise<void>((resolve,_) => {
     gulp.src('README.md').pipe(gulp.dest("dist/"))
     gulp.src("src/module.json").pipe(gulp.dest('dist/'))
     gulp.src("src/lang/**").pipe(gulp.dest('dist/lang/'))
